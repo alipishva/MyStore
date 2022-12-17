@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
@@ -47,6 +48,7 @@ interface NikeView {
 abstract class NikeViewModel : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
+    val progressBraLiveData = MutableLiveData<Boolean>()
 
     override fun onCleared() {
         compositeDisposable.clear()

@@ -1,5 +1,6 @@
 package com.arp.mynikestore.feature.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.data.Product
@@ -12,8 +13,9 @@ import timber.log.Timber
 
 class MainViewModel(productRepository : ProductRepository) : NikeViewModel() {
 
-    val productLiveData = MutableLiveData<List<Product>>()
-    val progressBraLiveData = MutableLiveData<Boolean>()
+    private val _productLiveData = MutableLiveData<List<Product>>()
+    val productLiveData : LiveData<List<Product>>
+        get() = _productLiveData
 
     init {
         progressBraLiveData.value = true
@@ -27,7 +29,7 @@ class MainViewModel(productRepository : ProductRepository) : NikeViewModel() {
                 }
 
                 override fun onSuccess(t : List<Product>) {
-                    productLiveData.value = t
+                    _productLiveData.value = t
                 }
 
                 override fun onError(e : Throwable) {
