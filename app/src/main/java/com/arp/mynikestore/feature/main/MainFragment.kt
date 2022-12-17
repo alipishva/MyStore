@@ -18,11 +18,16 @@ class MainFragment : NikeFragment() {
 
     override fun onViewCreated(view : View , savedInstanceState : Bundle?) {
         super.onViewCreated(view , savedInstanceState)
+
         mainViewModel.productLiveData.observe(viewLifecycleOwner){ it ->
             it.forEach { 
                 println(it.title)
             }
             Timber.i(it.toString())
+        }
+
+        mainViewModel.progressBraLiveData.observe(viewLifecycleOwner){
+            setProgressIndicator(it)
 
         }
     }

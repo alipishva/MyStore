@@ -13,11 +13,14 @@ import timber.log.Timber
 class MainViewModel(productRepository : ProductRepository) : NikeViewModel() {
 
     val productLiveData = MutableLiveData<List<Product>>()
+    val progressBraLiveData = MutableLiveData<Boolean>()
 
     init {
+        progressBraLiveData.value = true
         productRepository.getProducts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally { progressBraLiveData.value = false }
             .subscribe(object : SingleObserver<List<Product>> {
                 override fun onSubscribe(d : Disposable) {
                     compositeDisposable.add(d)
