@@ -15,7 +15,8 @@ class MainViewModel(productRepository : ProductRepository) : NikeViewModel() {
     val productLiveData = MutableLiveData<List<Product>>()
 
     init {
-        productRepository.getProducts().subscribeOn(Schedulers.io())
+        productRepository.getProducts()
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<List<Product>> {
                 override fun onSubscribe(d : Disposable) {

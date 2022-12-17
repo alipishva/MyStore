@@ -22,7 +22,9 @@ interface NikeView {
 }
 
 abstract class NikeViewModel : ViewModel() {
+
     val compositeDisposable = CompositeDisposable()
+
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()

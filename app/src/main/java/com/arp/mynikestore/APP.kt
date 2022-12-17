@@ -23,8 +23,7 @@ class APP : Application() {
 
         val myModule = module {
             single<ApiService> { createApiServiceInstance() }
-            factory<ProductRepository> { ProductRepositoryImpl(ProductRemoteDataSource(get()),
-                ProductLocalDataSource()) }
+            factory<ProductRepository> { ProductRepositoryImpl(ProductRemoteDataSource(get()), ProductLocalDataSource()) }
             viewModel { MainViewModel(get()) }
         }
 
