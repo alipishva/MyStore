@@ -1,6 +1,10 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -13,6 +17,9 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.multidex:multidex:2.0.1")
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -42,6 +50,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    //load image library
+    implementation 'com.facebook.fresco:fresco:2.6.0'
 //  retroFit dependency
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 //    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
@@ -51,6 +61,7 @@ dependencies {
 
 //    Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
 
     // Koin
     def koin_android_version= "3.3.1"
@@ -69,8 +80,11 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.5'
     //navigation
-    def nav_version = "2.3.2"
+    def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-runtime-ktx:2.5.3"
+
+    //view pager indicator
+    implementation("com.tbuonomo:dotsindicator:4.3")
 }

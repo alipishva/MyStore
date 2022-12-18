@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.arp.mynikestore.view.NikeImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:roundedCornerRadius="@dimen/main_banner_cornner_12"
+    android:paddingStart="@dimen/margin_16_dp"
+    android:paddingEnd="@dimen/margin_16_dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+
+
+
+</com.arp.mynikestore.view.NikeImageView>

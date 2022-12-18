@@ -1,5 +1,6 @@
 package com.arp.mynikestore.services.http
 
+import com.arp.mynikestore.data.Banner
 import com.arp.mynikestore.data.Product
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
@@ -11,6 +12,9 @@ interface ApiService {
 
     @GET("product/list")
     fun getProducts() : Single<List<Product>>
+
+    @GET("banner/slider")
+    fun getBannerList(): Single<List<Banner>>
 
 }
 
