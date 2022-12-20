@@ -14,14 +14,13 @@ interface ApiService {
     fun getProducts() : Single<List<Product>>
 
     @GET("banner/slider")
-    fun getBannerList(): Single<List<Banner>>
+    fun getBannerList() : Single<List<Banner>>
 
 }
 
 fun createApiServiceInstance() : ApiService {
 
-    val retrofit = Retrofit.Builder()
-        .baseUrl("http://expertdevelopers.ir/api/v1/")
+    val retrofit = Retrofit.Builder().baseUrl("http://expertdevelopers.ir/api/v1/")
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create()).build()
     return retrofit.create(ApiService::class.java)

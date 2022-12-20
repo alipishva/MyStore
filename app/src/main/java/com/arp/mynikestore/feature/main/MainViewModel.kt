@@ -12,8 +12,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel(
-    productRepository : ProductRepository , private val bannerRepository : BannerRepository
-) : NikeViewModel() {
+    productRepository : ProductRepository , private val bannerRepository : BannerRepository) : NikeViewModel() {
 
     private val _productLiveData = MutableLiveData<List<Product>>()
     val productLiveData : LiveData<List<Product>>

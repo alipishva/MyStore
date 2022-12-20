@@ -4,7 +4,7 @@ import com.arp.mynikestore.data.Product
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
-class ProductLocalDataSource():ProductDataSource {
+class ProductLocalDataSource() : ProductDataSource {
     override fun getProducts() : Single<List<Product>> {
         TODO("Not yet implemented")
     }
