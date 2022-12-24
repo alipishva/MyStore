@@ -4,4 +4,5 @@
     <dimen name="padding_8_dp">8dp</dimen>
     <dimen name="main_banner_cornner_12">12dp</dimen>
     <dimen name="margin_12">12dp</dimen>
+    <dimen name="corner_radius">12dp</dimen>
 </resources>

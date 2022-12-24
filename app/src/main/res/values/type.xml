@@ -44,14 +44,16 @@
         <item name="android:fontFamily">@font/poppins_regular</item>
 
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="lineHeight">24sp</item>
+        <item name="android:textColor">?colorOnSurface</item>
+<!--        <item name="lineHeight">24sp</item>-->
     </style>
 
     <style name="TextAppearance.Reply.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?colorOnSurface</item>
+
     </style>
 
     <style name="TextAppearance.Reply.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">

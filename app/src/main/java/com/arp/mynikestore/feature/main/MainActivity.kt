@@ -7,14 +7,21 @@ import androidx.navigation.ui.setupWithNavController
 import com.arp.mynikestore.NikeActivity
 import com.arp.mynikestore.R
 import com.arp.mynikestore.common.setupWithNavController
+import com.arp.mynikestore.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : NikeActivity() {
+
+    private lateinit var binding:ActivityMainBinding
     private var currentNavController: LiveData<NavController>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding= ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState

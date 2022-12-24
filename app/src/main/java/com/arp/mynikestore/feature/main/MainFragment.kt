@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.arp.mynikestore.NikeFragment
 import com.arp.mynikestore.R
-import com.arp.mynikestore.common.convertDpToPixel
+import com.arp.mynikestore.data.Product
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class MainFragment : NikeFragment() {
+
     private val mainViewModel : MainViewModel by viewModel()
+    val productListAdapter : ProductListAdapter by inject()
 
     override fun onCreateView(
         inflater : LayoutInflater , container : ViewGroup? , savedInstanceState : Bundle?
@@ -24,28 +28,36 @@ class MainFragment : NikeFragment() {
     override fun onViewCreated(view : View , savedInstanceState : Bundle?) {
         super.onViewCreated(view , savedInstanceState)
 
-        mainViewModel.productLiveData.observe(viewLifecycleOwner) { it ->
+        rv_latest_product.layoutManager =
+            LinearLayoutManager(requireContext() , RecyclerView.HORIZONTAL , false)
+        rv_latest_product.adapter = productListAdapter
 
+        rv_popular_product.layoutManager =
+            LinearLayoutManager(requireContext() , RecyclerView.HORIZONTAL , false)
+        rv_popular_product.adapter = productListAdapter
+
+        mainViewModel.productPopularLiveData.observe(viewLifecycleOwner) {
+            productListAdapter.products = it as ArrayList<Product>
+
+        }
+
+        mainViewModel.productLatestLiveData.observe(viewLifecycleOwner) { it ->
+            productListAdapter.products = ArrayList<Product>()
+            productListAdapter.products = it as ArrayList<Product>
             Timber.i(it.toString())
         }
 
-        mainViewModel.progressBraLiveData.observe(viewLifecycleOwner) {
+        mainViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
             setProgressIndicator(it)
 
         }
 
         mainViewModel.bannerLiveData.observe(viewLifecycleOwner) { it ->
+            //setup slider adapter and send it for viewPager
             val bannerSliderAdapter = BannerSliderAdapter(this , it)
             banner_slider_view_pager.adapter = bannerSliderAdapter
 
-//            val viewpagerHeight = (((banner_slider_view_pager.measuredWidth - convertDpToPixel(32f ,
-//                requireContext())) * 173) / 328).toInt()
-//
-//            val layoutParams = banner_slider_view_pager.layoutParams
-//
-//            layoutParams.height = viewpagerHeight
-
-//            Timber.i("viewpagerHeight ---> $viewpagerHeight")
+            //attach indicator to viewPager
             slider_indicator.attachTo(banner_slider_view_pager)
 
         }

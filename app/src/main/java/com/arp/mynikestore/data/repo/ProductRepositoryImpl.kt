@@ -6,9 +6,14 @@ import com.arp.mynikestore.data.repo.source.ProductLocalDataSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
-class ProductRepositoryImpl(private val remoteDataSource : ProductDataSource , val localDataSource : ProductLocalDataSource) : ProductRepository {
+class ProductRepositoryImpl(
+    private val remoteDataSource : ProductDataSource ,
+    val localDataSource : ProductLocalDataSource
+) : ProductRepository {
 
-    override fun getProducts() : Single<List<Product>> =remoteDataSource.getProducts()
+    override fun getProducts(sort : Int) : Single<List<Product>> =
+        remoteDataSource.getProducts(sort)
+
     override fun getFavoriteProducts() : Single<List<Product>> {
         TODO("Not yet implemented")
     }

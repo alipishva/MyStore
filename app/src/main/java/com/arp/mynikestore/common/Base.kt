@@ -11,15 +11,19 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class NikeFragment : Fragment() , NikeView {
+
     override val rootView : CoordinatorLayout?
         get() = view as CoordinatorLayout
+
     override val viewContext : Context?
         get() = context
 }
 
 abstract class NikeActivity : AppCompatActivity() , NikeView {
+
     override val rootView : CoordinatorLayout?
         get() = window.decorView.rootView as CoordinatorLayout
+
     override val viewContext : Context?
         get() = this
 }
@@ -27,6 +31,7 @@ abstract class NikeActivity : AppCompatActivity() , NikeView {
 interface NikeView {
     val viewContext : Context?
     val rootView : CoordinatorLayout?
+
     fun setProgressIndicator(mustShow : Boolean) {
         rootView?.let {
             viewContext?.let { context ->
@@ -48,7 +53,7 @@ interface NikeView {
 abstract class NikeViewModel : ViewModel() {
 
     val compositeDisposable = CompositeDisposable()
-    val progressBraLiveData = MutableLiveData<Boolean>()
+    val progressBarLiveData = MutableLiveData<Boolean>()
 
     override fun onCleared() {
         compositeDisposable.clear()

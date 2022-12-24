@@ -9,6 +9,7 @@ import com.arp.mynikestore.data.repo.source.BannerRemoteDataSource
 import com.arp.mynikestore.data.repo.source.ProductLocalDataSource
 import com.arp.mynikestore.data.repo.source.ProductRemoteDataSource
 import com.arp.mynikestore.feature.main.MainViewModel
+import com.arp.mynikestore.feature.main.ProductListAdapter
 import com.arp.mynikestore.services.FrescoImageLoadingImpl
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.services.http.ApiService
@@ -38,8 +39,10 @@ class APP : Application() {
             factory<ProductRepository> {
                 ProductRepositoryImpl(ProductRemoteDataSource(get()) , ProductLocalDataSource())
             }
+
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
 
+            factory { ProductListAdapter(get()) }
             viewModel { MainViewModel(get() , get()) }
         }
 

@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 
 class ProductRemoteDataSource(private val apiService : ApiService) : ProductDataSource {
 
-    override fun getProducts() : Single<List<Product>> = apiService.getProducts()
+    override fun getProducts(sort:Int) : Single<List<Product>> = apiService.getProducts(sort.toString())
 
     override fun getFavoriteProducts() : Single<List<Product>> {
         TODO("Not yet implemented")
@@ -20,4 +20,5 @@ class ProductRemoteDataSource(private val apiService : ApiService) : ProductData
     override fun deleteFromFavorite() : Completable {
         TODO("Not yet implemented")
     }
+
 }
