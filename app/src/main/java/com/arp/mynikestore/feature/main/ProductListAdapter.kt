@@ -19,11 +19,14 @@ import kotlin.collections.ArrayList
 class ProductListAdapter(val imageLoadingService : ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
 
-    var products = ArrayList<Product>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    var products = mutableListOf<Product>()
+
+    fun setData(data: List<Product>) {
+        products.apply {
+            clear()
+            addAll(data)
         }
+    }
 
     override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false))

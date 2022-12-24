@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.common.NikeSingleObserver
-import com.arp.mynikestore.data.Banner
-import com.arp.mynikestore.data.Product
-import com.arp.mynikestore.data.SORT_LATEST_PRODUCT
-import com.arp.mynikestore.data.SORT_POPULAR_PRODUCT
+import com.arp.mynikestore.data.*
 import com.arp.mynikestore.data.repo.BannerRepository
 import com.arp.mynikestore.data.repo.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
