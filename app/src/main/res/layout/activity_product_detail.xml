@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.product.ProductDetailActivity">
+
+    <com.arp.mynikestore.view.scroll.ObservableScrollView
+        android:id="@+id/Observable_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.arp.mynikestore.view.NikeImageView
+                    android:id="@+id/iv_product_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:viewAspectRatio="1" />
+
+            </FrameLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_product_details_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="start"
+                    android:layout_marginStart="@dimen/margin_16_dp"
+                    android:layout_marginTop="@dimen/margin_16_dp"
+                    android:layout_marginEnd="@dimen/margin_16_dp"
+                    android:textAppearance="@style/TextAppearance.Reply.Headline6"
+                    tools:text="productName" />
+
+                <TextView
+                    android:id="@+id/tv_product_details_previous_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_product_details_current_Price"
+                    android:layout_alignTop="@id/tv_product_details_title"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_16_dp"
+                    android:layout_marginEnd="@dimen/margin_16_dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAppearance="@style/TextAppearance.Reply.Body2"
+                    android:textColor="?android:textColorSecondary"
+                    tools:text="TextView" />
+
+                <TextView
+                    android:id="@+id/tv_product_details_current_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_product_details_previous_price"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/margin_16_dp"
+                    android:layout_marginTop="@dimen/margin_4dp"
+                    android:layout_marginEnd="@dimen/margin_16_dp"
+                    android:textAppearance="@style/TextAppearance.Reply.Body1"
+                    tools:text="TextView" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16_dp"
+                android:text="android:sample/lorem/random"
+                android:textAppearance="@style/TextAppearance.Reply.Body2" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:text="@string/comments"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="?android:textColorSecondary" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/insertComment" />
+                
+
+
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16_dp"
+                android:id="@+id/rv_comments"
+                android:padding="@dimen/padding_8_dp"/>
+
+        </LinearLayout>
+
+    </com.arp.mynikestore.view.scroll.ObservableScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:translationZ="5dp">
+
+        <ImageView
+            android:id="@+id/btn_product_details_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/ic_back_24dp" />
+
+        <ImageView
+            android:id="@+id/favoriteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="16dp"
+            app:srcCompat="@drawable/ic_favorites_24dp" />
+
+    </FrameLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/toolBar_product_detail_view"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:cardCornerRadius="0dp"
+        android:alpha="0"
+        app:cardElevation="4dp">
+
+        <TextView
+            android:id="@+id/tv_product_details_toolBar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginStart="48dp"
+            tools:text="Product name"
+            android:textAppearance="@style/TextAppearance.Reply.Headline6" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

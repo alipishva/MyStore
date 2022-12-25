@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
                     android:text="@string/latest"
-                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textAppearance="@style/TextAppearance.Reply.Headline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
                     android:text="@string/popular"
-                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textAppearance="@style/TextAppearance.Reply.Headline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton

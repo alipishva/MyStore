@@ -8,4 +8,6 @@
     <string name="view_all">View All</string>
     <string name="popular">Popular</string>
     <string name="latest">Latest</string>
+    <string name="comments">Comments</string>
+    <string name="insertComment">Add Commment</string>
 </resources>

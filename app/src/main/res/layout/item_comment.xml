@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_4dp"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tv_item_comment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textAppearance="@style/TextAppearance.Reply.Body1"
+        tools:text="comment title" />
+
+    <TextView
+        android:id="@+id/tv_item_comment_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_item_comment_title"
+        android:layout_alignBottom="@id/tv_item_comment_title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/TextAppearance.Reply.Body2"
+        android:textColor="?android:textColorSecondary"
+        tools:text="comment date" />
+
+    <TextView
+        android:id="@+id/tv_item_comment_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_comment_title"
+        android:layout_alignStart="@id/tv_item_comment_title"
+        android:layout_alignEnd="@id/tv_item_comment_date"
+        android:layout_marginTop="4dp"
+        android:textAppearance="@style/TextAppearance.Reply.Body2"
+        android:textColor="?android:textColorSecondary"
+        tools:text="email address" />
+
+    <TextView
+        android:id="@+id/tv_item_comment_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_comment_author"
+        android:layout_alignStart="@id/tv_item_comment_author"
+        android:layout_alignEnd="@id/tv_item_comment_author"
+        android:layout_marginTop="12dp"
+        android:gravity="start"
+        android:textAppearance="@style/TextAppearance.Reply.Body2"
+        tools:text="Comment content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_item_comment_content"
+        android:layout_marginTop="16dp"
+        android:background="?dividerColor" />
+
+</RelativeLayout>

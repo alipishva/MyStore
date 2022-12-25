@@ -1,15 +1,12 @@
 package com.arp.mynikestore
 
 import android.app.Application
-import com.arp.mynikestore.data.repo.BannerRepository
-import com.arp.mynikestore.data.repo.BannerRepositoryImpl
-import com.arp.mynikestore.data.repo.ProductRepository
-import com.arp.mynikestore.data.repo.ProductRepositoryImpl
-import com.arp.mynikestore.data.repo.source.BannerRemoteDataSource
-import com.arp.mynikestore.data.repo.source.ProductLocalDataSource
-import com.arp.mynikestore.data.repo.source.ProductRemoteDataSource
+import android.os.Bundle
+import com.arp.mynikestore.data.repo.*
+import com.arp.mynikestore.data.repo.source.*
 import com.arp.mynikestore.feature.main.MainViewModel
 import com.arp.mynikestore.feature.main.ProductListAdapter
+import com.arp.mynikestore.feature.product.ProductDetailViewModel
 import com.arp.mynikestore.services.FrescoImageLoadingImpl
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.services.http.ApiService
@@ -42,8 +39,11 @@ class APP : Application() {
 
             factory<BannerRepository> { BannerRepositoryImpl(BannerRemoteDataSource(get())) }
 
+            factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
+
             factory { ProductListAdapter(get()) }
             viewModel { MainViewModel(get() , get()) }
+            viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle , get()) }
         }
 
         startKoin {

@@ -25,7 +25,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:minLines="2"
-        android:textAppearance="?textAppearanceBody1"
+        android:textAppearance="@style/TextAppearance.Reply.Body1"
         tools:text="TextView" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_below="@id/tv_product_title"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:textAppearance="?textAppearanceBody2"
+        android:textAppearance="@style/TextAppearance.Reply.Body2"
         android:textColor="?android:textColorSecondary"
         tools:text="TextView" />
 
@@ -46,7 +46,7 @@
         android:layout_below="@id/tv_product_previous_price"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
-        android:textAppearance="?textAppearanceBody1"
+        android:textAppearance="@style/TextAppearance.Reply.Body1"
         tools:text="TextView" />
 
     <ImageView

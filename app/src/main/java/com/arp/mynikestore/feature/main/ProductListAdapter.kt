@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.arp.mynikestore.R
 import com.arp.mynikestore.common.formatPrice
 import com.arp.mynikestore.common.implementSpringAnimationTrait
@@ -14,14 +13,15 @@ import com.arp.mynikestore.data.Product
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.view.NikeImageView
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ProductListAdapter(val imageLoadingService : ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
 
+    var onProductClickListener : OnProductClickListener? = null
+
     var products = mutableListOf<Product>()
 
-    fun setData(data: List<Product>) {
+    fun setData(data : List<Product>) {
         products.apply {
             clear()
             addAll(data)
@@ -29,7 +29,8 @@ class ProductListAdapter(val imageLoadingService : ImageLoadingService) :
     }
 
     override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : ProductViewHolder {
-        return ProductViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_product,parent,false))
+        return ProductViewHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_product , parent , false))
     }
 
     override fun onBindViewHolder(holder : ProductViewHolder , position : Int) {
@@ -47,14 +48,14 @@ class ProductListAdapter(val imageLoadingService : ImageLoadingService) :
         val tvCurrentPrice = itemView.findViewById<TextView>(R.id.tv_product_current_Price)
 
         fun bindProduct(product : Product) {
-            val currency: Currency = Currency.getInstance(Locale.getDefault())
+            val currency : Currency = Currency.getInstance(Locale.getDefault())
             // store the currency sign in symbol variable
-            val symbol: String = currency.symbol
+            val symbol : String = currency.symbol
             imageLoadingService.load(ivProductImage , product.image)
             tvTitle.text = product.title
 
             tvPreviousPrice.apply {
-                text="$symbol${product.previous_price}"
+                text = "$symbol${product.previous_price}"
                 paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }
 
@@ -63,7 +64,13 @@ class ProductListAdapter(val imageLoadingService : ImageLoadingService) :
             }
 
             itemView.implementSpringAnimationTrait()
-            itemView.setOnClickListener {  }
+            itemView.setOnClickListener {
+                onProductClickListener?.onProductClick(product)
+            }
         }
+    }
+
+    interface OnProductClickListener {
+        fun onProductClick(product : Product)
     }
 }

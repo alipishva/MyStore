@@ -5,4 +5,5 @@
     <dimen name="main_banner_cornner_12">12dp</dimen>
     <dimen name="margin_12">12dp</dimen>
     <dimen name="corner_radius">12dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
 </resources>

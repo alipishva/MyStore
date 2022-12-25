@@ -1,6 +1,7 @@
 package com.arp.mynikestore.services.http
 
 import com.arp.mynikestore.data.Banner
+import com.arp.mynikestore.data.Comment
 import com.arp.mynikestore.data.Product
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
@@ -16,6 +17,9 @@ interface ApiService {
 
     @GET("banner/slider")
     fun getBannerList() : Single<List<Banner>>
+
+    @GET("comment/list")
+    fun getCommentList(@Query("product_id") productId : Int) : Single<List<Comment>>
 
 }
 
