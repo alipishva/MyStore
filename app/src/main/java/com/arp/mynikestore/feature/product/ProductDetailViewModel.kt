@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.common.EXTRA_KEY_DATA
 import com.arp.mynikestore.common.NikeSingleObserver
+import com.arp.mynikestore.common.asyncNetworkRequest
 import com.arp.mynikestore.data.Comment
 import com.arp.mynikestore.data.Product
 import com.arp.mynikestore.data.repo.CommentRepository
@@ -24,18 +25,17 @@ class ProductDetailViewModel(bundle : Bundle , commentRepository : CommentReposi
         get() = _commentLiveData
 
     init {
+        progressBarLiveData.value = true
         _productDetailLiveData.value = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            bundle.getParcelable(EXTRA_KEY_DATA , Product::class.java)
-                ?: throw IllegalStateException("Product can not be null")
+            bundle.getParcelable(EXTRA_KEY_DATA , Product::class.java) ?: throw IllegalStateException("Product can not be null")
         } else {
-            bundle.getParcelable(EXTRA_KEY_DATA)
-                ?: throw IllegalStateException("Product can not be null")
+            bundle.getParcelable(EXTRA_KEY_DATA) ?: throw IllegalStateException("Product can not be null")
 
         }
 
         commentRepository.getAll(productDetailLiveData.value !!.id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .asyncNetworkRequest()
+            .doFinally { progressBarLiveData.value = false }
             .subscribe(object : NikeSingleObserver<List<Comment>>(compositeDisposable) {
                 override fun onSuccess(t : List<Comment>) {
                     _commentLiveData.value = t

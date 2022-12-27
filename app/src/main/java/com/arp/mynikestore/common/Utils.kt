@@ -10,7 +10,9 @@ import android.view.View
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
-import timber.log.Timber
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 fun convertDpToPixel(dp : Float , context : Context?) : Float {
@@ -27,18 +29,15 @@ fun convertDpToPixel(dp : Float , context : Context?) : Float {
 fun formatPrice(price : Number , unitRelativeSizeFactor : Float = 0.8f) : SpannableString {
     val currencyLabel = "$"
     val spannableString = SpannableString("$currencyLabel$price")
-    spannableString.setSpan(RelativeSizeSpan(unitRelativeSizeFactor) ,
-        spannableString.indexOf(currencyLabel) ,
-        spannableString.length ,
-        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+    spannableString.setSpan(RelativeSizeSpan(unitRelativeSizeFactor) , spannableString.indexOf(currencyLabel) , spannableString.length , SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
     return spannableString
 }
 
 fun View.implementSpringAnimationTrait() {
-    val scaleXAnim = SpringAnimation(this, DynamicAnimation.SCALE_X, 0.90f)
-    val scaleYAnim = SpringAnimation(this, DynamicAnimation.SCALE_Y, 0.90f)
+    val scaleXAnim = SpringAnimation(this , DynamicAnimation.SCALE_X , 0.90f)
+    val scaleYAnim = SpringAnimation(this , DynamicAnimation.SCALE_Y , 0.90f)
 
-    setOnTouchListener { v, event ->
+    setOnTouchListener { v , event ->
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 scaleXAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
@@ -50,16 +49,15 @@ fun View.implementSpringAnimationTrait() {
                 scaleYAnim.start()
 
             }
-            MotionEvent.ACTION_UP,
-            MotionEvent.ACTION_CANCEL -> {
+            MotionEvent.ACTION_UP , MotionEvent.ACTION_CANCEL -> {
                 scaleXAnim.cancel()
                 scaleYAnim.cancel()
-                val reverseScaleXAnim = SpringAnimation(this, DynamicAnimation.SCALE_X, 1f)
+                val reverseScaleXAnim = SpringAnimation(this , DynamicAnimation.SCALE_X , 1f)
                 reverseScaleXAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
                 reverseScaleXAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
                 reverseScaleXAnim.start()
 
-                val reverseScaleYAnim = SpringAnimation(this, DynamicAnimation.SCALE_Y, 1f)
+                val reverseScaleYAnim = SpringAnimation(this , DynamicAnimation.SCALE_Y , 1f)
                 reverseScaleYAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
                 reverseScaleYAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
                 reverseScaleYAnim.start()
@@ -70,4 +68,11 @@ fun View.implementSpringAnimationTrait() {
 
         false
     }
+}
+
+fun <T> Single<T>.asyncNetworkRequest() : Single<T> {
+
+    return subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+
 }

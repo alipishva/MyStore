@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arp.mynikestore.R
 import com.arp.mynikestore.data.Comment
 
-class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(private val showAll : Boolean = false) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     var comments = ArrayList<Comment>()
         set(value) {
@@ -25,7 +25,13 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
         holder.bindComment(comments[position])
     }
 
-    override fun getItemCount() : Int = if (comments.size > 3) 3 else comments.size
+    override fun getItemCount() : Int {
+        if (comments.size > 3 && ! showAll) {
+            return 3
+        } else {
+            return comments.size
+        }
+    }
 
     class CommentViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
@@ -33,6 +39,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
         private val tvDate : TextView = itemView.findViewById<TextView>(R.id.tv_item_comment_date)
         private val tvAuthor : TextView = itemView.findViewById<TextView>(R.id.tv_item_comment_author)
         private val tvContent : TextView = itemView.findViewById<TextView>(R.id.tv_item_comment_content)
+
 
         fun bindComment(comment : Comment) {
             tvTitle.text = comment.title

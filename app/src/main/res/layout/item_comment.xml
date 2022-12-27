@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_4dp"
-    android:padding="8dp">
+    android:paddingStart="@dimen/padding_8_dp"
+    android:paddingEnd="@dimen/padding_8_dp">
 
     <TextView
         android:id="@+id/tv_item_comment_title"

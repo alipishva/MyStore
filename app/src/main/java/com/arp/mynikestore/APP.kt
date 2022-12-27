@@ -7,6 +7,7 @@ import com.arp.mynikestore.data.repo.source.*
 import com.arp.mynikestore.feature.main.MainViewModel
 import com.arp.mynikestore.feature.main.ProductListAdapter
 import com.arp.mynikestore.feature.product.ProductDetailViewModel
+import com.arp.mynikestore.feature.product.comment.CommentListViewModel
 import com.arp.mynikestore.services.FrescoImageLoadingImpl
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.services.http.ApiService
@@ -44,6 +45,7 @@ class APP : Application() {
             factory { ProductListAdapter(get()) }
             viewModel { MainViewModel(get() , get()) }
             viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle , get()) }
+            viewModel { (productId : Int) -> CommentListViewModel(productId , get()) }
         }
 
         startKoin {

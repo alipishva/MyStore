@@ -24,7 +24,7 @@
                     android:id="@+id/iv_product_detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:viewAspectRatio="1" />
+                    app:viewAspectRatio="1.5" />
 
             </FrameLayout>
 
@@ -39,10 +39,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:gravity="start"
                     android:layout_marginStart="@dimen/margin_16_dp"
                     android:layout_marginTop="@dimen/margin_16_dp"
                     android:layout_marginEnd="@dimen/margin_16_dp"
+                    android:gravity="start"
                     android:textAppearance="@style/TextAppearance.Reply.Headline6"
                     tools:text="productName" />
 
@@ -52,10 +52,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tv_product_details_current_Price"
                     android:layout_alignTop="@id/tv_product_details_title"
+                    android:layout_alignEnd="@id/tv_product_details_current_Price"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="@dimen/margin_16_dp"
-                    android:layout_marginEnd="@dimen/margin_16_dp"
                     android:layout_marginBottom="8dp"
                     android:textAppearance="@style/TextAppearance.Reply.Body2"
                     android:textColor="?android:textColorSecondary"
@@ -68,7 +68,7 @@
                     android:layout_below="@id/tv_product_details_previous_price"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="@dimen/margin_16_dp"
-                    android:layout_marginTop="@dimen/margin_4dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="@dimen/margin_16_dp"
                     android:textAppearance="@style/TextAppearance.Reply.Body1"
                     tools:text="TextView" />
@@ -76,11 +76,22 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/tv_product_details_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_16_dp"
-                android:text="android:sample/lorem/random"
+                android:layout_marginStart="@dimen/margin_16_dp"
+                android:text="@string/test_text"
                 android:textAppearance="@style/TextAppearance.Reply.Body2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/margin_16_dp"
+                android:layout_marginStart="@dimen/margin_16_dp"
+                android:background="?dividerColor" />
+
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -94,26 +105,37 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
                     android:text="@string/comments"
-                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textAppearance="@style/TextAppearance.Reply.Headline6"
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_product_detail_add_comment"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end"
+                    android:layout_gravity="end"
                     android:text="@string/insertComment" />
-                
-
 
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16_dp"
-                android:id="@+id/rv_comments"
-                android:padding="@dimen/padding_8_dp"/>
+                android:background="@drawable/comment_background"
+                android:layout_marginStart="@dimen/margin_16_dp"
+                android:layout_marginEnd="@dimen/margin_16_dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_product_detail_show_all_comment"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="@dimen/margin_16_dp"
+                android:layout_marginEnd="@dimen/margin_16_dp"
+                android:text="@string/all_comment_s"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -146,8 +168,8 @@
         android:id="@+id/toolBar_product_detail_view"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:cardCornerRadius="0dp"
         android:alpha="0"
+        app:cardCornerRadius="0dp"
         app:cardElevation="4dp">
 
         <TextView
@@ -156,8 +178,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
             android:layout_marginStart="48dp"
-            tools:text="Product name"
-            android:textAppearance="@style/TextAppearance.Reply.Headline6" />
+            android:textAppearance="@style/TextAppearance.Reply.Headline6"
+            tools:text="Product name" />
 
 
     </com.google.android.material.card.MaterialCardView>
