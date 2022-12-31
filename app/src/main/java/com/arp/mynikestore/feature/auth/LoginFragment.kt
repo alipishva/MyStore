@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.arp.mynikestore.NikeFragment
 import com.arp.mynikestore.R
 import com.arp.mynikestore.common.NikeCompletableObserver
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
