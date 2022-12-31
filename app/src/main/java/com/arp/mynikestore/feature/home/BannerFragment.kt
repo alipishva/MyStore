@@ -1,4 +1,4 @@
-package com.arp.mynikestore.feature.main
+package com.arp.mynikestore.feature.home
 
 import android.os.Build
 import android.os.Bundle

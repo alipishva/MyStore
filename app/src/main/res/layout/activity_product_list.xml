@@ -13,6 +13,7 @@
         android:background="?android:colorBackground">
 
         <com.arp.mynikestore.view.NikeToolbar
+            android:id="@+id/toolbar_product_list"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:nt_title="@string/product_list"
@@ -71,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:text="@string/sortLatest" />
+            tools:text="@string/sort" />
 
         <ImageView
             android:id="@+id/btn_view_type_changer"

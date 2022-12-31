@@ -9,7 +9,9 @@
     <com.arp.mynikestore.view.scroll.ObservableScrollView
         android:id="@+id/Observable_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +26,7 @@
                     android:id="@+id/iv_product_detail_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:viewAspectRatio="1.5" />
+                    app:viewAspectRatio="1.3" />
 
             </FrameLayout>
 
@@ -79,17 +81,17 @@
                 android:id="@+id/tv_product_details_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16_dp"
                 android:layout_marginStart="@dimen/margin_16_dp"
+                android:layout_marginTop="@dimen/margin_16_dp"
                 android:text="@string/test_text"
                 android:textAppearance="@style/TextAppearance.Reply.Body2" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginStart="@dimen/margin_16_dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/margin_16_dp"
-                android:layout_marginStart="@dimen/margin_16_dp"
                 android:background="?dividerColor" />
 
 
@@ -122,9 +124,9 @@
                 android:id="@+id/rv_comments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/comment_background"
                 android:layout_marginStart="@dimen/margin_16_dp"
-                android:layout_marginEnd="@dimen/margin_16_dp"/>
+                android:layout_marginEnd="@dimen/margin_16_dp"
+                android:background="@drawable/comment_background" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_product_detail_show_all_comment"
@@ -183,5 +185,16 @@
 
 
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_product_detail_add_to_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="@dimen/margin_16_dp"
+        android:gravity="center"
+        android:text="@string/add_to_cart" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

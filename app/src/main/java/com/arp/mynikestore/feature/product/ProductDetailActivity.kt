@@ -4,18 +4,22 @@ import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arp.mynikestore.NikeActivity
 import com.arp.mynikestore.R
-import com.arp.mynikestore.common.EXTRA_KEY_DATA
 import com.arp.mynikestore.common.EXTRA_KEY_ID
+import com.arp.mynikestore.common.NikeCompletableObserver
 import com.arp.mynikestore.common.formatPrice
 import com.arp.mynikestore.data.Comment
 import com.arp.mynikestore.feature.product.comment.CommentListActivity
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.view.scroll.ObservableScrollViewCallbacks
 import com.arp.mynikestore.view.scroll.ScrollState
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +29,7 @@ class ProductDetailActivity : NikeActivity() {
 
     private val productDetailViewModel : ProductDetailViewModel by viewModel { parametersOf(intent.extras) }
     private val imageLoadingService : ImageLoadingService by inject()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +39,10 @@ class ProductDetailActivity : NikeActivity() {
             finish()
         }
 
-
-
         rv_comments.layoutManager = LinearLayoutManager(this , RecyclerView.VERTICAL , false)
         val commentAdapter = CommentAdapter()
 
-        productDetailViewModel.progressBarLiveData.observe(this){
+        productDetailViewModel.progressBarLiveData.observe(this) {
             setProgressIndicator(it)
         }
 
@@ -60,6 +63,7 @@ class ProductDetailActivity : NikeActivity() {
         productDetailViewModel.commentLiveData.observe(this) {
             commentAdapter.comments = it as ArrayList<Comment>
             rv_comments.adapter = commentAdapter
+            rv_comments.isNestedScrollingEnabled=false
             if (it.size > 3) {
                 btn_product_detail_show_all_comment.visibility = View.VISIBLE
                 btn_product_detail_show_all_comment.setOnClickListener {
@@ -78,6 +82,21 @@ class ProductDetailActivity : NikeActivity() {
     }
 
     private fun initViews() {
+
+//        add to cart btn click
+        btn_product_detail_add_to_cart.setOnClickListener {
+            Toast.makeText(this , "Add to cart button click " , Toast.LENGTH_SHORT).show()
+            productDetailViewModel.addToCartBtnClicked()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        //show snack bar
+                        showSnackBar(getString(R.string.succes_add_to_cart) )
+
+                    }
+                })
+        }
 
 
         iv_product_detail_image.post {
@@ -101,5 +120,10 @@ class ProductDetailActivity : NikeActivity() {
 
             })
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

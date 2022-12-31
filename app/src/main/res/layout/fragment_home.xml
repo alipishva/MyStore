@@ -73,7 +73,7 @@
                     android:textColor="?android:textColorSecondary" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_main_latest"
+                    android:id="@+id/btn_home_product_latest"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

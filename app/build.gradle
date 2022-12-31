@@ -92,4 +92,7 @@ dependencies {
 
     //view pager indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
+//  eventBus
+    implementation("org.greenrobot:eventbus:3.3.1")
+
 }

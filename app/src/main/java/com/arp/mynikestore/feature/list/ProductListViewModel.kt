@@ -3,31 +3,43 @@ package com.arp.mynikestore.feature.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.arp.mynikestore.NikeViewModel
+import com.arp.mynikestore.R
 import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.common.asyncNetworkRequest
 import com.arp.mynikestore.data.Product
 import com.arp.mynikestore.data.repo.ProductRepository
 
-class ProductListViewModel(val sort : Int , val productRepository : ProductRepository) : NikeViewModel() {
+class ProductListViewModel(var sort : Int , private val productRepository : ProductRepository) : NikeViewModel() {
 
     private val _productListLiveData = MutableLiveData<List<Product>>()
     val productListLiveData : LiveData<List<Product>>
         get() = _productListLiveData
 
-    init {
+    val sortTypeListLiveData = MutableLiveData<Int>()
 
+    private val sortTitle = arrayOf(R.string.latest , R.string.popular , R.string.asce , R.string.desc)
+
+    init {
+        getProducts()
+        sortTypeListLiveData.value = sortTitle[sort]
     }
 
 
-    fun getProduct() : Unit {
-        productRepository.getProducts(sort)
-            .asyncNetworkRequest()
+    private fun getProducts() {
+        progressBarLiveData.value = true
+        productRepository.getProducts(sort).asyncNetworkRequest().doFinally { progressBarLiveData.value = false }
             .subscribe(object : NikeSingleObserver<List<Product>>(compositeDisposable) {
                 override fun onSuccess(t : List<Product>) {
-                    TODO("Not yet implemented")
+                    _productListLiveData.value = t
                 }
             })
 
 
+    }
+
+    fun onSelectedSortChangeByUser(sort : Int) {
+        this.sort = sort
+        this.sortTypeListLiveData.value = sortTitle[sort]
+        getProducts()
     }
 }

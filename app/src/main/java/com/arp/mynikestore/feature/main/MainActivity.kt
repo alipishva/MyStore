@@ -3,7 +3,6 @@ package com.arp.mynikestore.feature.main
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.navigation.ui.setupWithNavController
 import com.arp.mynikestore.NikeActivity
 import com.arp.mynikestore.R
 import com.arp.mynikestore.common.setupWithNavController

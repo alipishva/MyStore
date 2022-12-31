@@ -7,8 +7,9 @@
 
     <ImageView
         android:id="@+id/btn_toolbar_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?selectableItemBackgroundBorderless"
         android:layout_gravity="center_vertical|start"
         android:layout_marginStart="16dp"
         app:srcCompat="@drawable/ic_back_24dp"/>
@@ -18,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="56dp"
         android:textAppearance="?textAppearanceHeadline6"
         tools:text="Page Title"/>
 

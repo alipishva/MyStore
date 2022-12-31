@@ -10,10 +10,10 @@
 
         <item name="colorOnSurface">@color/black</item>
 
-<!--        text color secondary-->
+        <!--        text color secondary-->
         <item name="android:textColorSecondary">@color/grayDark</item>
 
-<!--        set attrs color for divider-->
+        <!--        set attrs color for divider-->
         <item name="dividerColor">@color/gray</item>
 
         <!-- Status bar color. -->
@@ -28,7 +28,7 @@
         <!--set font family on all project-->
         <item name="fontFamily">@font/poppins_regular</item>
 
-<!--        between line space-->
+        <!--        between line space-->
         <item name="android:lineSpacingExtra">6dp</item>
 
         <item name="android:includeFontPadding">false</item>
@@ -49,5 +49,14 @@
         <item name="textAppearanceCaption">@style/TextAppearance.Reply.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.Reply.Overline</item>
 
+    </style>
+
+    <style name="Theme.Nike.AuthTheme" parent="Theme.MyNikeStore">
+        <item name="android:statusBarColor" >@color/black</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="materialButtonStyle">@style/Theme.Nike.AuthTheme.Button</item>
     </style>
 </resources>
