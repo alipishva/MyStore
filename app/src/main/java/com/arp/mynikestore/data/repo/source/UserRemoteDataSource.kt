@@ -6,15 +6,15 @@ import com.arp.mynikestore.services.http.ApiService
 import com.google.gson.JsonObject
 import io.reactivex.rxjava3.core.Single
 
-const val CLIENT_SECRET = "kyj1c9sVcksqGU4scMX7nLDalkjp2WoqQEf8PKAC"
 const val CLIENT_ID = 2
+const val CLIENT_SECRET = "kyj1c9sVcksqGU4scMX7nLDalkjp2WoqQEf8PKAC"
 
-class UserRemoteDataSource(val apiService : ApiService) : UserDataSource {
+class UserRemoteDataSource(private val apiService : ApiService) : UserDataSource {
     override fun login(username : String , password : String) : Single<TokenResponce> {
         return apiService.login(JsonObject().apply {
-            addProperty("grant_type" , "password")
             addProperty("username" , username)
             addProperty("password" , password)
+            addProperty("grant_type" , "password")
             addProperty("client_id" , CLIENT_ID)
             addProperty("client_secret" , CLIENT_SECRET)
         })
@@ -31,7 +31,7 @@ class UserRemoteDataSource(val apiService : ApiService) : UserDataSource {
         TODO("Not yet implemented")
     }
 
-    override fun SaveToken(token : String , refresh_token : String) {
+    override fun saveToken(token : String , refresh_token : String) {
         TODO("Not yet implemented")
     }
 }

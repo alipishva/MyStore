@@ -62,7 +62,7 @@ class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoading
 
         fun bindProduct(product : Product) {
             val currency : Currency = Currency.getInstance(Locale.getDefault())
-            // store the currency sign in symbol variable
+            // store the currency symbol in variable
             val symbol : String = currency.symbol
             imageLoadingService.load(ivProductImage , product.image)
             tvTitle.text = product.title

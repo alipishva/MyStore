@@ -13,6 +13,7 @@ import androidx.dynamicanimation.animation.SpringForce
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.text.DecimalFormat
 
 
 fun convertDpToPixel(dp : Float , context : Context?) : Float {
@@ -27,8 +28,9 @@ fun convertDpToPixel(dp : Float , context : Context?) : Float {
 }
 
 fun formatPrice(price : Number , unitRelativeSizeFactor : Float = 0.8f) : SpannableString {
+    val dec = DecimalFormat("#,###.00")
     val currencyLabel = "$"
-    val spannableString = SpannableString("$currencyLabel$price")
+    val spannableString = SpannableString("$currencyLabel${dec.format(price)}")
     spannableString.setSpan(RelativeSizeSpan(unitRelativeSizeFactor) , spannableString.indexOf(currencyLabel) , spannableString.length , SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
     return spannableString
 }
@@ -72,7 +74,6 @@ fun View.implementSpringAnimationTrait() {
 
 fun <T> Single<T>.asyncNetworkRequest() : Single<T> {
 
-    return subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
+    return subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
 }

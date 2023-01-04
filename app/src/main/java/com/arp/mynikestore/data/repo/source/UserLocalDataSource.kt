@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Single
 const val ACCESS_TOKEN = "access_token"
 const val REFRESH_TOKEN = "refresh_token"
 
-class UserLocalDataSource(val sharedPreferences : SharedPreferences) : UserDataSource {
+class UserLocalDataSource(private val sharedPreferences : SharedPreferences) : UserDataSource {
     override fun login(username : String , password : String) : Single<TokenResponce> {
         TODO("Not yet implemented")
     }
@@ -22,7 +22,7 @@ class UserLocalDataSource(val sharedPreferences : SharedPreferences) : UserDataS
         TokenContainer.update(sharedPreferences.getString(ACCESS_TOKEN , null) , sharedPreferences.getString(REFRESH_TOKEN , null))
     }
 
-    override fun SaveToken(token : String , refresh_token : String) {
+    override fun saveToken(token : String , refresh_token : String) {
         sharedPreferences.edit().apply {
             putString(ACCESS_TOKEN , token)
             putString(REFRESH_TOKEN , refresh_token)

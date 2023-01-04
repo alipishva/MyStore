@@ -33,7 +33,7 @@
             android:textAppearance="?textAppearanceBody1" />
 
         <EditText
-            android:id="@+id/et_fragment_login_email"
+            android:id="@+id/et_fragment_signup_email"
             style="@style/Theme.Nike.AuthTheme.EditText"
             android:layout_width="@dimen/authViewWidth"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:inputType="textPassword" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_fragment_login_login"
+            android:id="@+id/btn_fragment_signup"
             android:layout_width="@dimen/authViewWidth"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -78,7 +78,7 @@
             android:textAppearance="?textAppearanceBody1" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_fragment_login_signUp_link"
+            android:id="@+id/btn_signIn_link"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -33,8 +33,16 @@
 
     <string name="signup_screen_title">Create Account</string>
     <string name="signin_hint">Do you have account ?</string>
-
-
+    <string name="pay">Pay</string>
+    <string name="count">Count</string>
+    <string name="remove_from_cart">Remove from cart</string>
+    <string name="purchaseDetail">Purchase detail</string>
+    <string name="total_price">Total Price</string>
+    <string name="shipping_cost">Shipping</string>
+    <string name="payablePrice">Order total</string>
+    <string name="discount">Discount</string>
+    <string name="cartEmptyStateLoginRequired">Login to your account .</string>
+    <string name="cartEmptyStateCallToAction">Login</string>
 
 
     <string-array name="sortTitlesArray">

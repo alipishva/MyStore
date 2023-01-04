@@ -42,6 +42,7 @@ class ProductDetailActivity : NikeActivity() {
         rv_comments.layoutManager = LinearLayoutManager(this , RecyclerView.VERTICAL , false)
         val commentAdapter = CommentAdapter()
 
+
         productDetailViewModel.progressBarLiveData.observe(this) {
             setProgressIndicator(it)
         }
@@ -63,7 +64,7 @@ class ProductDetailActivity : NikeActivity() {
         productDetailViewModel.commentLiveData.observe(this) {
             commentAdapter.comments = it as ArrayList<Comment>
             rv_comments.adapter = commentAdapter
-            rv_comments.isNestedScrollingEnabled=false
+            rv_comments.isNestedScrollingEnabled = false
             if (it.size > 3) {
                 btn_product_detail_show_all_comment.visibility = View.VISIBLE
                 btn_product_detail_show_all_comment.setOnClickListener {
@@ -76,27 +77,26 @@ class ProductDetailActivity : NikeActivity() {
 
 
 
+
+        //        add to cart btn clickListener
+        btn_product_detail_add_to_cart.setOnClickListener {
+            productDetailViewModel.addToCartBtnClicked().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
+                    override fun onComplete() {
+                        //show snack bar
+                        showSnackBar(getString(R.string.succes_add_to_cart))
+
+                    }
+                })
+        }
+
+
         initViews()
 
 
     }
 
     private fun initViews() {
-
-//        add to cart btn click
-        btn_product_detail_add_to_cart.setOnClickListener {
-            Toast.makeText(this , "Add to cart button click " , Toast.LENGTH_SHORT).show()
-            productDetailViewModel.addToCartBtnClicked()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : NikeCompletableObserver(compositeDisposable) {
-                    override fun onComplete() {
-                        //show snack bar
-                        showSnackBar(getString(R.string.succes_add_to_cart) )
-
-                    }
-                })
-        }
 
 
         iv_product_detail_image.post {

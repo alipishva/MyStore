@@ -48,7 +48,7 @@ class ProductDetailViewModel(bundle : Bundle , commentRepository : CommentReposi
 
     //    when add to cart btn on ProductDetailActivity Clicked run this method and we need Product_id get it from productDetailLiveData
 //                .ignoreElement() this property convert single to Completable
-    fun addToCartBtnClicked() : Completable = cartRepository.addToCart(productDetailLiveData.value !!.id).ignoreElement()
+    fun addToCartBtnClicked() : Completable = cartRepository.addToCart(_productDetailLiveData.value !!.id).ignoreElement()
 
 
 }

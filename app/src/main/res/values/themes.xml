@@ -10,6 +10,8 @@
 
         <item name="colorOnSurface">@color/black</item>
 
+        <item name="windowBackgroundColorSub">#f8f8f8</item>
+
         <!--        text color secondary-->
         <item name="android:textColorSecondary">@color/grayDark</item>
 

@@ -2,7 +2,6 @@ package com.arp.mynikestore
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.text.BreakIterator
 
 abstract class NikeFragment : Fragment() , NikeView {
 
@@ -57,16 +55,17 @@ abstract class NikeActivity : AppCompatActivity() , NikeView {
     override val viewContext : Context?
         get() = this
 
-
-    override fun onCreate(savedInstanceState : Bundle?) {
-        super.onCreate(savedInstanceState)
-        EventBus.getDefault().register(this)
+    override fun onStart() {
+        super.onStart()
+        if (! EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().register(this);
     }
 
-    override fun onDestroy() {
+    override fun onStop() {
+        super.onStop()
         EventBus.getDefault().unregister(this)
-        super.onDestroy()
     }
+    
 }
 
 interface NikeView {
@@ -100,6 +99,7 @@ interface NikeView {
                 NikeException.Type.AUTH -> {
                     it.startActivity(Intent(it , AuthActivity::class.java))
                     Toast.makeText(it , "${nikeException.serverMessage}" , Toast.LENGTH_SHORT).show()
+                    return
                 }
 
                 NikeException.Type.DIALOG -> {

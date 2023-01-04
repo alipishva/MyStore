@@ -26,8 +26,8 @@ class CommentAdapter(private val showAll : Boolean = false) : RecyclerView.Adapt
     }
 
     override fun getItemCount() : Int {
-        if (comments.size > 3 && ! showAll) {
-            return 3
+        if (comments.size > 5 && ! showAll) {
+            return 5
         } else {
             return comments.size
         }

@@ -8,5 +8,5 @@ interface UserDataSource {
     fun login(username : String , password : String) : Single<TokenResponce>
     fun signUp(username : String , password : String) : Single<MessageResponse>
     fun loadToken()
-    fun SaveToken(token : String , refresh_token : String)
+    fun saveToken(token : String , refresh_token : String)
 }

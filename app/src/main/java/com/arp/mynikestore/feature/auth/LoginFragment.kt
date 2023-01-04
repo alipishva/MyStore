@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class LoginFragment : Fragment() {
 
     private val viewModel : AuthViewModel by viewModel()
-    val compositeDisposable=CompositeDisposable()
+    val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater : LayoutInflater , container : ViewGroup? , savedInstanceState : Bundle?) : View? {
         return inflater.inflate(R.layout.fragment_login , container , false)
@@ -24,9 +24,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view : View , savedInstanceState : Bundle?) {
         super.onViewCreated(view , savedInstanceState)
-        
-        btn_fragment_login_login.setOnClickListener {
-            viewModel.login(et_fragment_login_email.text.toString() , et_fragment_login_password.text.toString())
+
+        btn_fragment_login.setOnClickListener {
+            viewModel.login(et_fragment_signup_email.text.toString() , et_fragment_login_password.text.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : NikeCompletableObserver(compositeDisposable) {
@@ -35,6 +35,12 @@ class LoginFragment : Fragment() {
                     }
                 })
 
+        }
+
+        btn_signUp_link.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_container , SignUpFragment())
+            }.commit()
         }
 
     }

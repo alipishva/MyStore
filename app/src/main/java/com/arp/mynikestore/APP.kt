@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.arp.mynikestore.data.repo.*
 import com.arp.mynikestore.data.repo.source.*
 import com.arp.mynikestore.feature.auth.AuthViewModel
+import com.arp.mynikestore.feature.cart.CartViewModel
 import com.arp.mynikestore.feature.common.ProductListAdapter
 import com.arp.mynikestore.feature.home.HomeViewModel
 import com.arp.mynikestore.feature.list.ProductListViewModel
@@ -51,12 +52,15 @@ class APP : Application() {
             single<SharedPreferences> { this@APP.getSharedPreferences("app_setting" , MODE_PRIVATE) }
             single<UserRepository> { UserRepositoryImpl(UserRemoteDataSource(get()) , UserLocalDataSource(get())) }
 
+            single { UserLocalDataSource(get()) }
+
             factory { (viewType : Int) -> ProductListAdapter(viewType , get()) }
             viewModel { HomeViewModel(get() , get()) }
             viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle , get() , get()) }
             viewModel { (productId : Int) -> CommentListViewModel(productId , get()) }
             viewModel { (sort : Int) -> ProductListViewModel(sort , get()) }
             viewModel { AuthViewModel(get()) }
+            viewModel { CartViewModel(get()) }
         }
 
         startKoin {
