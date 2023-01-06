@@ -12,12 +12,16 @@ import com.arp.mynikestore.R
 import com.arp.mynikestore.common.EXTRA_KEY_DATA
 import com.arp.mynikestore.common.NikeCompletableObserver
 import com.arp.mynikestore.data.CartItem
+import com.arp.mynikestore.feature.auth.AuthActivity
 import com.arp.mynikestore.feature.product.ProductDetailActivity
+import com.arp.mynikestore.feature.shipping.ShippingActivity
 import com.arp.mynikestore.services.ImageLoadingService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.view_cart_empty_state.*
+import kotlinx.android.synthetic.main.view_cart_empty_state.view.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -54,6 +58,25 @@ class CartFragment : NikeFragment() , CartItemAdapter.CartItemViewCallBacks {
             }
         }
 
+        viewModel.emptySateLiveData.observe(viewLifecycleOwner) {
+            if (it.mustShow) {
+                val emptyState = showEmptySate(R.layout.view_cart_empty_state)
+                emptyState?.let { view ->
+                    view.emptyStateMessageTv.text = getString(it.messageResId)
+                    view.emptyStateCtaBtn.visibility = if (it.mustShowCallToActionButton) View.VISIBLE else View.GONE
+                    view.emptyStateCtaBtn.setOnClickListener {
+                        startActivity(Intent(requireContext() , AuthActivity::class.java))
+                    }
+
+                }
+            } else emptyStateRootView?.visibility = View.GONE
+        }
+
+        btn_cart_pay.setOnClickListener {
+            startActivity(Intent(requireContext() , ShippingActivity::class.java).apply {
+                putExtra(EXTRA_KEY_DATA,viewModel.purchaseDetailLiveData.value)
+            })
+        }
 
     }
 
@@ -72,10 +95,8 @@ class CartFragment : NikeFragment() , CartItemAdapter.CartItemViewCallBacks {
     }
 
     override fun onIncreaseCartItemClick(cartItem : CartItem) {
-        viewModel.increaseCartItemCount(cartItem)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object :NikeCompletableObserver(compositeDisposable){
+        viewModel.increaseCartItemCount(cartItem).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : NikeCompletableObserver(compositeDisposable) {
                 override fun onComplete() {
                     cartItemAdapter?.increaseCount(cartItem)
                 }
@@ -83,10 +104,8 @@ class CartFragment : NikeFragment() , CartItemAdapter.CartItemViewCallBacks {
     }
 
     override fun onDecreaseCartItemClick(cartItem : CartItem) {
-        viewModel.decreaseCartItemCount(cartItem)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object :NikeCompletableObserver(compositeDisposable){
+        viewModel.decreaseCartItemCount(cartItem).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : NikeCompletableObserver(compositeDisposable) {
                 override fun onComplete() {
                     cartItemAdapter?.decreaseCount(cartItem)
                 }
@@ -94,8 +113,8 @@ class CartFragment : NikeFragment() , CartItemAdapter.CartItemViewCallBacks {
     }
 
     override fun onProductImageClick(cartItem : CartItem) {
-        startActivity(Intent(requireContext(),ProductDetailActivity::class.java).apply {
-            putExtra(EXTRA_KEY_DATA,cartItem.product)
+        startActivity(Intent(requireContext() , ProductDetailActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA , cartItem.product)
         })
     }
 }

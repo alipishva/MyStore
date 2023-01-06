@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/emptyStateRootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/emptyStateRootView"
     android:background="?android:colorBackground"
     android:translationZ="10dp">
 
@@ -29,10 +29,13 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/emptyStateCtaBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="@string/cartEmptyStateCallToAction" />
+            android:layout_marginEnd="32dp"
+            android:text="@string/cartEmptyStateCallToAction"
+            android:textAppearance="?textAppearanceHeadline5" />
 
     </LinearLayout>
 

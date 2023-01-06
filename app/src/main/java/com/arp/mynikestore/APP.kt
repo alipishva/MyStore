@@ -10,6 +10,7 @@ import com.arp.mynikestore.feature.cart.CartViewModel
 import com.arp.mynikestore.feature.common.ProductListAdapter
 import com.arp.mynikestore.feature.home.HomeViewModel
 import com.arp.mynikestore.feature.list.ProductListViewModel
+import com.arp.mynikestore.feature.main.MainViewModel
 import com.arp.mynikestore.feature.product.ProductDetailViewModel
 import com.arp.mynikestore.feature.product.comment.CommentListViewModel
 import com.arp.mynikestore.services.FrescoImageLoadingImpl
@@ -61,6 +62,7 @@ class APP : Application() {
             viewModel { (sort : Int) -> ProductListViewModel(sort , get()) }
             viewModel { AuthViewModel(get()) }
             viewModel { CartViewModel(get()) }
+            viewModel { MainViewModel(get()) }
         }
 
         startKoin {
