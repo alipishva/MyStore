@@ -58,6 +58,10 @@
     <string name="return_home">Home</string>
     <string name="order_history">Order history</string>
     <string name="checkoutToolbarTitle">Payment receipt</string>
+    <string name="favorites">Favorites</string>
+    <string name="orderHistory">Order history</string>
+    <string name="signIn">Signin</string>
+    <string name="guest_user">Guest</string>
 
 
     <string-array name="sortTitlesArray">

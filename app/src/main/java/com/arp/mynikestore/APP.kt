@@ -4,15 +4,20 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.os.Bundle
 import com.arp.mynikestore.data.repo.*
+import com.arp.mynikestore.data.repo.order.OrderRemoteDataSource
+import com.arp.mynikestore.data.repo.order.OrderRepository
+import com.arp.mynikestore.data.repo.order.OrderRepositoryImpl
 import com.arp.mynikestore.data.repo.source.*
 import com.arp.mynikestore.feature.auth.AuthViewModel
 import com.arp.mynikestore.feature.cart.CartViewModel
+import com.arp.mynikestore.feature.checkout.CheckOutViewModel
 import com.arp.mynikestore.feature.common.ProductListAdapter
 import com.arp.mynikestore.feature.home.HomeViewModel
 import com.arp.mynikestore.feature.list.ProductListViewModel
 import com.arp.mynikestore.feature.main.MainViewModel
 import com.arp.mynikestore.feature.product.ProductDetailViewModel
 import com.arp.mynikestore.feature.product.comment.CommentListViewModel
+import com.arp.mynikestore.feature.shipping.ShippingViewModel
 import com.arp.mynikestore.services.FrescoImageLoadingImpl
 import com.arp.mynikestore.services.ImageLoadingService
 import com.arp.mynikestore.services.http.ApiService
@@ -55,7 +60,10 @@ class APP : Application() {
 
             single { UserLocalDataSource(get()) }
 
+            single<OrderRepository> { OrderRepositoryImpl(OrderRemoteDataSource(get())) }
+
             factory { (viewType : Int) -> ProductListAdapter(viewType , get()) }
+
             viewModel { HomeViewModel(get() , get()) }
             viewModel { (bundle : Bundle) -> ProductDetailViewModel(bundle , get() , get()) }
             viewModel { (productId : Int) -> CommentListViewModel(productId , get()) }
@@ -63,6 +71,9 @@ class APP : Application() {
             viewModel { AuthViewModel(get()) }
             viewModel { CartViewModel(get()) }
             viewModel { MainViewModel(get()) }
+            viewModel { ShippingViewModel(get()) }
+            viewModel { (orderId : Int) -> CheckOutViewModel(orderId , get()) }
+
         }
 
         startKoin {
