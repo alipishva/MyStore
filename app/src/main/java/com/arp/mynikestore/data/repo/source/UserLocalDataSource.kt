@@ -28,4 +28,18 @@ class UserLocalDataSource(private val sharedPreferences : SharedPreferences) : U
             putString(REFRESH_TOKEN , refresh_token)
         }.apply()
     }
+
+    override fun saveUserName(username : String) {
+        sharedPreferences.edit().apply {
+            putString("username" , username)
+        }.apply()
+    }
+
+    override fun getUserName() : String = sharedPreferences.getString("username" , "") ?: ""
+
+    override fun signOut() {
+        sharedPreferences.edit().apply {
+            clear()
+        }.apply()
+    }
 }

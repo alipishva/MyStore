@@ -34,4 +34,16 @@ class UserRemoteDataSource(private val apiService : ApiService) : UserDataSource
     override fun saveToken(token : String , refresh_token : String) {
         TODO("Not yet implemented")
     }
+
+    override fun saveUserName(username : String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUserName() : String {
+        TODO("Not yet implemented")
+    }
+
+    override fun signOut() {
+        TODO("Not yet implemented")
+    }
 }

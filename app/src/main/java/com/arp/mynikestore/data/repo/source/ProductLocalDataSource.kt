@@ -1,23 +1,23 @@
 package com.arp.mynikestore.data.repo.source
 
+import androidx.room.*
 import com.arp.mynikestore.data.Product
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import retrofit2.http.DELETE
 
-class ProductLocalDataSource() : ProductDataSource {
+@Dao
+interface ProductLocalDataSource: ProductDataSource {
     override fun getProducts(sort:Int) : Single<List<Product>> {
         TODO("Not yet implemented")
     }
 
-    override fun getFavoriteProducts() : Single<List<Product>> {
-        TODO("Not yet implemented")
-    }
+    @Query("SELECT * FROM products")
+    override fun getFavoriteProducts() : Single<List<Product>>
 
-    override fun addToFavorite() : Completable {
-        TODO("Not yet implemented")
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override fun addToFavorite(Product:Product) : Completable
 
-    override fun deleteFromFavorite() : Completable {
-        TODO("Not yet implemented")
-    }
+    @Delete
+    override fun deleteFromFavorite(Product:Product) : Completable
 }

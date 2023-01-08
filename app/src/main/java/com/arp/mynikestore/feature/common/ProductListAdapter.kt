@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arp.mynikestore.R
@@ -20,7 +21,7 @@ const val VIEW_TYPE_LARGE = 2
 
 class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoadingService : ImageLoadingService) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
 
-    var onProductClickListener : OnProductClickListener? = null
+    var onProductEventListener : OnProductEventListener? = null
 
     var products = mutableListOf<Product>()
 
@@ -38,8 +39,8 @@ class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoading
     override fun onCreateViewHolder(parent : ViewGroup , viewType : Int) : ProductViewHolder {
         val layoutResId = when (viewType) {
             VIEW_TYPE_ROUND -> R.layout.item_product
-            VIEW_TYPE_SMALL ->R.layout.item_product_small
-            VIEW_TYPE_LARGE->R.layout.item_product_large
+            VIEW_TYPE_SMALL -> R.layout.item_product_small
+            VIEW_TYPE_LARGE -> R.layout.item_product_large
             else -> throw IllegalStateException("View type is not valid")
         }
 
@@ -55,10 +56,11 @@ class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoading
 
     inner class ProductViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-        val ivProductImage = itemView.findViewById<NikeImageView>(R.id.iv_product_image)
-        val tvTitle = itemView.findViewById<TextView>(R.id.tv_product_title)
-        val tvPreviousPrice = itemView.findViewById<TextView>(R.id.tv_product_previous_price)
-        val tvCurrentPrice = itemView.findViewById<TextView>(R.id.tv_product_current_Price)
+        private val ivProductImage : NikeImageView = itemView.findViewById<NikeImageView>(R.id.iv_product_image)
+        private val tvTitle : TextView = itemView.findViewById<TextView>(R.id.tv_product_title)
+        private val tvPreviousPrice : TextView = itemView.findViewById<TextView>(R.id.tv_product_previous_price)
+        private val tvCurrentPrice : TextView = itemView.findViewById<TextView>(R.id.tv_product_current_Price)
+        private val btnFavoriteProduct : ImageView = itemView.findViewById(R.id.btn_product_item_favorite)
 
         fun bindProduct(product : Product) {
             val currency : Currency = Currency.getInstance(Locale.getDefault())
@@ -66,6 +68,11 @@ class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoading
             val symbol : String = currency.symbol
             imageLoadingService.load(ivProductImage , product.image)
             tvTitle.text = product.title
+            if (product.isFavorite){
+                btnFavoriteProduct.setImageResource(R.drawable.ic_favorite_fill_24)
+            }else{
+                btnFavoriteProduct.setImageResource(R.drawable.ic_favorites)
+            }
 
             tvPreviousPrice.apply {
                 text = "$symbol${product.previous_price}"
@@ -78,12 +85,19 @@ class ProductListAdapter(var viewType : Int = VIEW_TYPE_ROUND , val imageLoading
 
             itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
-                onProductClickListener?.onProductClick(product)
+                onProductEventListener?.onProductClick(product)
+            }
+
+            btnFavoriteProduct.setOnClickListener {
+                onProductEventListener?.onFavoriteBtnClick(product)
+                product.isFavorite = ! product.isFavorite
+                notifyItemChanged(adapterPosition)
             }
         }
     }
 
-    interface OnProductClickListener {
+    interface OnProductEventListener {
         fun onProductClick(product : Product)
+        fun onFavoriteBtnClick(product : Product)
     }
 }

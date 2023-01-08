@@ -1,10 +1,11 @@
 package com.arp.mynikestore.data.repo.order
 
 import com.arp.mynikestore.data.Checkout
+import com.arp.mynikestore.data.OrderHistoryItem
 import com.arp.mynikestore.data.SubmitOrderResult
 import io.reactivex.rxjava3.core.Single
 
-class OrderRepositoryImpl(val orderDataSource : OrderDataSource) : OrderRepository {
+class OrderRepositoryImpl(private val orderDataSource : OrderDataSource) : OrderRepository {
     override fun submit(firstName : String , lastName : String , postalCode : String , phoneNumber : String , address : String , paymentMethod : String) : Single<SubmitOrderResult> {
         return orderDataSource.submit(firstName , lastName , postalCode , phoneNumber , address , paymentMethod)
     }
@@ -12,5 +13,7 @@ class OrderRepositoryImpl(val orderDataSource : OrderDataSource) : OrderReposito
     override fun checkout(orderId : Int) : Single<Checkout> {
         return orderDataSource.checkout(orderId)
     }
+
+    override fun orderList() : Single<List<OrderHistoryItem>> = orderDataSource.orderList()
 
 }
