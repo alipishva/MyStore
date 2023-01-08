@@ -1,10 +1,10 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.product
 
 import androidx.room.*
 import com.arp.mynikestore.data.Product
+import com.arp.mynikestore.data.repo.product.ProductDataSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.DELETE
 
 @Dao
 interface ProductLocalDataSource: ProductDataSource {

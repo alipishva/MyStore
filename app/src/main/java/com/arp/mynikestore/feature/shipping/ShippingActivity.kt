@@ -27,6 +27,10 @@ class ShippingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shipping)
 
+        shipping_toolbar.onBackButtonClickListener=View.OnClickListener {
+            finish()
+        }
+
         val purchaseDetail = if (Build.VERSION.SDK_INT >= 33) {
             intent.getParcelableExtra(EXTRA_KEY_DATA , PurchaseDetail::class.java) ?: throw IllegalStateException("Purchase detail cannot be null")
         } else {

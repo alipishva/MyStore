@@ -6,10 +6,7 @@ import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.common.asyncNetworkRequest
 import com.arp.mynikestore.data.Comment
-import com.arp.mynikestore.data.Product
-import com.arp.mynikestore.data.repo.CommentRepository
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.arp.mynikestore.data.repo.comment.CommentRepository
 
 class CommentListViewModel(productId : Int , commentRepository : CommentRepository) : NikeViewModel() {
     private val _commentsLiveData = MutableLiveData<List<Comment>>()

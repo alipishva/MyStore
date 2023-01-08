@@ -9,8 +9,8 @@ import com.arp.mynikestore.data.Banner
 import com.arp.mynikestore.data.Product
 import com.arp.mynikestore.data.SORT_LATEST_PRODUCT
 import com.arp.mynikestore.data.SORT_POPULAR_PRODUCT
-import com.arp.mynikestore.data.repo.BannerRepository
-import com.arp.mynikestore.data.repo.ProductRepository
+import com.arp.mynikestore.data.repo.banner.BannerRepository
+import com.arp.mynikestore.data.repo.product.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 

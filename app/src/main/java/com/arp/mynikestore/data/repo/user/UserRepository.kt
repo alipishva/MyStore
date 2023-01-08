@@ -1,4 +1,4 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.user
 
 import io.reactivex.rxjava3.core.Completable
 

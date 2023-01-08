@@ -2,7 +2,7 @@ package com.arp.mynikestore.feature.profile
 
 import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.data.TokenContainer
-import com.arp.mynikestore.data.repo.UserRepository
+import com.arp.mynikestore.data.repo.user.UserRepository
 
 class ProfileViewModel(val userRepository : UserRepository) : NikeViewModel() {
 

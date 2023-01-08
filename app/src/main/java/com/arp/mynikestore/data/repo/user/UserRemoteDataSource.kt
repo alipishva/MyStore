@@ -1,7 +1,8 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.user
 
 import com.arp.mynikestore.data.MessageResponse
 import com.arp.mynikestore.data.TokenResponce
+import com.arp.mynikestore.data.repo.user.UserDataSource
 import com.arp.mynikestore.services.http.ApiService
 import com.google.gson.JsonObject
 import io.reactivex.rxjava3.core.Single

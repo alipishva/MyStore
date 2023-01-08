@@ -1,7 +1,6 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.comment
 
 import com.arp.mynikestore.data.Comment
-import com.arp.mynikestore.data.repo.source.CommentDataSource
 import io.reactivex.rxjava3.core.Single
 
 class CommentRepositoryImpl(private val commentRemoteDataSource : CommentDataSource) : CommentRepository {

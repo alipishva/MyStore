@@ -1,6 +1,7 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.banner
 
 import com.arp.mynikestore.data.Banner
+import com.arp.mynikestore.data.repo.banner.BannerDataSource
 import com.arp.mynikestore.services.http.ApiService
 import io.reactivex.rxjava3.core.Single
 

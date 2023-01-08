@@ -1,6 +1,7 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.comment
 
 import com.arp.mynikestore.data.Comment
+import com.arp.mynikestore.data.repo.comment.CommentDataSource
 import com.arp.mynikestore.services.http.ApiService
 import io.reactivex.rxjava3.core.Single
 

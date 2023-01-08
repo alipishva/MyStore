@@ -10,8 +10,8 @@ import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.common.asyncNetworkRequest
 import com.arp.mynikestore.data.Comment
 import com.arp.mynikestore.data.Product
-import com.arp.mynikestore.data.repo.CartRepository
-import com.arp.mynikestore.data.repo.CommentRepository
+import com.arp.mynikestore.data.repo.cart.CartRepository
+import com.arp.mynikestore.data.repo.comment.CommentRepository
 import io.reactivex.rxjava3.core.Completable
 
 

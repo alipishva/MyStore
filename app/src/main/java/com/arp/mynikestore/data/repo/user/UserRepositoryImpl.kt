@@ -1,8 +1,7 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.user
 
 import com.arp.mynikestore.data.TokenContainer
 import com.arp.mynikestore.data.TokenResponce
-import com.arp.mynikestore.data.repo.source.UserDataSource
 import io.reactivex.rxjava3.core.Completable
 
 class UserRepositoryImpl(private val userRemoteDataSource : UserDataSource , private val userLocalDataSource : UserDataSource) : UserRepository {

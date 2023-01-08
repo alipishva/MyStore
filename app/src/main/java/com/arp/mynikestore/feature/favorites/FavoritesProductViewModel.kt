@@ -6,7 +6,7 @@ import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.common.NikeCompletableObserver
 import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.data.Product
-import com.arp.mynikestore.data.repo.ProductRepository
+import com.arp.mynikestore.data.repo.product.ProductRepository
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 

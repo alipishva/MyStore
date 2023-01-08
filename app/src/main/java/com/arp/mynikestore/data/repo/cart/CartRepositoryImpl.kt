@@ -1,10 +1,9 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.cart
 
 import com.arp.mynikestore.data.AddToCartResponse
 import com.arp.mynikestore.data.CartItemCount
 import com.arp.mynikestore.data.CartResponse
 import com.arp.mynikestore.data.MessageResponse
-import com.arp.mynikestore.data.repo.source.CartDataSource
 import io.reactivex.rxjava3.core.Single
 
 class CartRepositoryImpl(private val cartRemoteDataSource : CartDataSource) : CartRepository {

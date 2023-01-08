@@ -7,7 +7,7 @@ import com.arp.mynikestore.R
 import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.common.asyncNetworkRequest
 import com.arp.mynikestore.data.*
-import com.arp.mynikestore.data.repo.CartRepository
+import com.arp.mynikestore.data.repo.cart.CartRepository
 import io.reactivex.rxjava3.core.Completable
 import org.greenrobot.eventbus.EventBus
 

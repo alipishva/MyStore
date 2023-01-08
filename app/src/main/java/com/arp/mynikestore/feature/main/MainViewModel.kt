@@ -4,7 +4,7 @@ import com.arp.mynikestore.NikeViewModel
 import com.arp.mynikestore.common.NikeSingleObserver
 import com.arp.mynikestore.data.CartItemCount
 import com.arp.mynikestore.data.TokenContainer
-import com.arp.mynikestore.data.repo.CartRepository
+import com.arp.mynikestore.data.repo.cart.CartRepository
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 

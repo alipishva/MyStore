@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <com.arp.mynikestore.view.NikeToolbar
+            android:id="@+id/shipping_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="?android:colorBackground"

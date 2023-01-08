@@ -1,4 +1,4 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.cart
 
 import com.arp.mynikestore.data.AddToCartResponse
 import com.arp.mynikestore.data.CartItemCount
@@ -6,7 +6,7 @@ import com.arp.mynikestore.data.CartResponse
 import com.arp.mynikestore.data.MessageResponse
 import io.reactivex.rxjava3.core.Single
 
-interface CartRepository {
+interface CartDataSource {
     fun addToCart(productId : Int) : Single<AddToCartResponse>
     fun get() : Single<CartResponse>
     fun remove(cartItemId : Int) : Single<MessageResponse>

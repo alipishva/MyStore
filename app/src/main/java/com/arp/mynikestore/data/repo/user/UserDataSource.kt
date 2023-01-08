@@ -1,4 +1,4 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.user
 
 import com.arp.mynikestore.data.MessageResponse
 import com.arp.mynikestore.data.TokenResponce

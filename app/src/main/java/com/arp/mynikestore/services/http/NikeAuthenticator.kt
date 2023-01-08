@@ -2,9 +2,9 @@ package com.arp.mynikestore.services.http
 
 import com.arp.mynikestore.data.TokenContainer
 import com.arp.mynikestore.data.TokenResponce
-import com.arp.mynikestore.data.repo.source.CLIENT_ID
-import com.arp.mynikestore.data.repo.source.CLIENT_SECRET
-import com.arp.mynikestore.data.repo.source.UserDataSource
+import com.arp.mynikestore.data.repo.user.CLIENT_ID
+import com.arp.mynikestore.data.repo.user.CLIENT_SECRET
+import com.arp.mynikestore.data.repo.user.UserDataSource
 import com.google.gson.JsonObject
 import okhttp3.Authenticator
 import okhttp3.Request

@@ -1,4 +1,4 @@
-package com.arp.mynikestore.data.repo.source
+package com.arp.mynikestore.data.repo.cart
 
 import com.arp.mynikestore.data.AddToCartResponse
 import com.arp.mynikestore.data.CartItemCount

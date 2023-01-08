@@ -1,8 +1,6 @@
-package com.arp.mynikestore.data.repo
+package com.arp.mynikestore.data.repo.product
 
 import com.arp.mynikestore.data.Product
-import com.arp.mynikestore.data.repo.source.ProductDataSource
-import com.arp.mynikestore.data.repo.source.ProductLocalDataSource
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
