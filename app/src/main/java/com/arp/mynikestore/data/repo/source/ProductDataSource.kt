@@ -6,8 +6,8 @@ import io.reactivex.rxjava3.core.Single
 
 interface ProductDataSource {
 
-    fun getProducts(sort:Int) : Single<List<Product>>
+    fun getProducts(sort : Int) : Single<List<Product>>
     fun getFavoriteProducts() : Single<List<Product>>
-    fun addToFavorite() : Completable
-    fun deleteFromFavorite() : Completable
+    fun addToFavorite(Product : Product) : Completable
+    fun deleteFromFavorite(Product : Product) : Completable
 }

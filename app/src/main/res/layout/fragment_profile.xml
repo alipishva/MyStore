@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?android:colorBackground">
 
     <LinearLayout
@@ -13,22 +13,22 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            app:shapeAppearance="@style/Avatar"
-            app:srcCompat="@drawable/ic_nike_logo"
-            app:strokeColor="?dividerColor"
-            app:strokeWidth="1dp"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="32dp"
-            android:scaleType="centerInside" />
+            android:scaleType="centerInside"
+            app:shapeAppearance="@style/Avatar"
+            app:srcCompat="@drawable/ic_nike_logo"
+            app:strokeColor="?dividerColor"
+            app:strokeWidth="1dp" />
 
         <TextView
-            android:id="@+id/usernameTv"
-            tools:text="@string/guest_user"
+            android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAppearance="?textAppearanceBody1" />
+            android:textAppearance="?textAppearanceBody1"
+            tools:text="@string/guest_user" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,26 +39,28 @@
             android:showDividers="middle|beginning|end">
 
             <TextView
+                android:id="@+id/btn_fav_product"
                 style="@style/ProfileLinks"
-                app:drawableStartCompat="@drawable/ic_favorite_20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/favorites" />
+                android:text="@string/favorites"
+                app:drawableStartCompat="@drawable/ic_favorite_20dp" />
 
             <TextView
+                android:id="@+id/btn_order_history"
                 style="@style/ProfileLinks"
-                app:drawableStartCompat="@drawable/ic_order_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/orderHistory" />
+                android:text="@string/orderHistory"
+                app:drawableStartCompat="@drawable/ic_order_history" />
 
             <TextView
                 android:id="@+id/authBtn"
                 style="@style/ProfileLinks"
-                app:drawableStartCompat="@drawable/ic_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/signIn" />
+                android:text="@string/signIn"
+                app:drawableStartCompat="@drawable/ic_login_24" />
         </LinearLayout>
 
     </LinearLayout>

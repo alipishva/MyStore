@@ -57,7 +57,7 @@
         tools:text="TextView" />
 
     <ImageView
-        android:id="@+id/btn_product_favorite"
+        android:id="@+id/btn_product_item_favorite"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_alignParentTop="true"

@@ -60,8 +60,14 @@
     <string name="checkoutToolbarTitle">Payment receipt</string>
     <string name="favorites">Favorites</string>
     <string name="orderHistory">Order history</string>
-    <string name="signIn">Signin</string>
+    <string name="signIn">Login</string>
     <string name="guest_user">Guest</string>
+    <string name="signOut">LogOut</string>
+
+    <string name="fav_empty_state_message">Add a product to your favorite list</string>
+    <string name="fav_help_message">Long touch for delete from favorite list </string>
+    <string name="orderHistory_payable">Order total amount</string>
+    <string name="orderHistory_orderId">Order  refrence</string>
 
 
     <string-array name="sortTitlesArray">

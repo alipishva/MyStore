@@ -21,10 +21,10 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener {
+class HomeFragment : NikeFragment() , ProductListAdapter.OnProductEventListener {
 
 //    inject view model
-    private val homeViewModel : HomeViewModel by viewModel()
+    private val viewModel : HomeViewModel by viewModel()
 //    inject ProductListAdapter with passing parameters
     private val productListAdapter : ProductListAdapter by inject{ parametersOf(VIEW_TYPE_ROUND) }
 
@@ -37,7 +37,7 @@ class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener 
         super.onViewCreated(view , savedInstanceState)
 
 //        on item click happen and this fragment implement this interface
-        productListAdapter.onProductClickListener = this
+        productListAdapter.onProductEventListener = this
 
 //        go to ProductListActivity and by default show LATEST product
         btn_home_product_latest.setOnClickListener {
@@ -47,7 +47,7 @@ class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener 
         }
 
 //      observe for LATEST product show on recyclerView the result from LiveData
-        homeViewModel.productLatestLiveData.observe(viewLifecycleOwner) { it ->
+        viewModel.productLatestLiveData.observe(viewLifecycleOwner) { it ->
             productListAdapter.setData(it)
             rv_latest_product.apply {
                 layoutManager = LinearLayoutManager(requireContext() , RecyclerView.HORIZONTAL , false)
@@ -55,7 +55,7 @@ class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener 
             }
         }
 //      observe for POPULAR product
-        homeViewModel.productPopularLiveData.observe(viewLifecycleOwner) {
+        viewModel.productPopularLiveData.observe(viewLifecycleOwner) {
             productListAdapter.setData(it)
             rv_popular_product.apply {
                 layoutManager = LinearLayoutManager(requireContext() , RecyclerView.HORIZONTAL , false)
@@ -64,12 +64,12 @@ class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener 
         }
 
 //        observe for progressBar show/dismiss
-        homeViewModel.progressBarLiveData.observe(viewLifecycleOwner) {
+        viewModel.progressBarLiveData.observe(viewLifecycleOwner) {
             setProgressIndicator(it)
 
         }
 
-        homeViewModel.bannerLiveData.observe(viewLifecycleOwner) { it ->
+        viewModel.bannerLiveData.observe(viewLifecycleOwner) { it ->
             //setup slider adapter and send it for viewPager
             val bannerSliderAdapter = BannerSliderAdapter(this , it)
             banner_slider_view_pager.adapter = bannerSliderAdapter
@@ -85,5 +85,9 @@ class HomeFragment : NikeFragment() , ProductListAdapter.OnProductClickListener 
         startActivity(Intent(requireContext() , ProductDetailActivity::class.java).apply {
             putExtra(EXTRA_KEY_DATA , product)
         })
+    }
+
+    override fun onFavoriteBtnClick(product : Product) {
+        viewModel.addProductToFavorites(product)
     }
 }
