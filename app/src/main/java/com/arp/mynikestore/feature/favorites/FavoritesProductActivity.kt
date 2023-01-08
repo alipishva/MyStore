@@ -2,6 +2,7 @@ package com.arp.mynikestore.feature.favorites
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +24,10 @@ class FavoritesProductActivity : NikeActivity() , FavoritesProductAdapter.Favori
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites_product)
+
+        fav_toolbar.onBackButtonClickListener= View.OnClickListener {
+            finish()
+        }
 
         helpBtn.setOnClickListener {
             showSnackBar(getString(R.string.fav_help_message),Snackbar.LENGTH_LONG)
